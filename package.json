@@ -1,6 +1,6 @@
 {
   "name": "angular-highcharts",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "Angular.js binding for Highcharts / Highstock",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
