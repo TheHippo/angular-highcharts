@@ -1,0 +1,8 @@
+angular-highcharts.sublime-project
+angular-highcharts.sublime-workspace
+node_modules/
+test/*.js
+test/*.map
+test/*.coffee
+test/scripts/*.js
+test/scripts/*.map

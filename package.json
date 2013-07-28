@@ -1,0 +1,18 @@
+{
+  "name": "angular-highcharts",
+  "version": "0.0.1",
+  "description": "Angular.js binding for Highcharts / Highstock",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Philipp Klose <me@thehippo.de>",
+  "license": "MIT",
+  "dependencies": {},
+  "devDependencies": {
+    "grunt": "~0.4.1",
+    "grunt-devserver": "~0.4.1",
+    "coffee-script": "~1.6.3",
+    "grunt-contrib-coffee": "~0.7.0",
+    "grunt-contrib-watch": "~0.5.1"
+  }
+}
