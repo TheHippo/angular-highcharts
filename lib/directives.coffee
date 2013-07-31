@@ -8,7 +8,7 @@ app.directive 'chart', ['IdGenerator', '$timeout', (idGenerator, timeout) ->
 		console.log 'chart'
 		id = idGenerator.getID()
 		element.children()[0].setAttribute 'id', id
-		
+
 		config =
 			chart:
 				renderTo: id
@@ -17,6 +17,10 @@ app.directive 'chart', ['IdGenerator', '$timeout', (idGenerator, timeout) ->
 		if attrs.title?
 			config.title =
 				text: attrs.title
+
+		options = scope.$eval attrs.config
+		config.chart = angular.extend config.chart, options
+		console.log config
 
 		chart = null
 		timer = null
@@ -37,7 +41,7 @@ app.directive 'chart', ['IdGenerator', '$timeout', (idGenerator, timeout) ->
 			if active
 			 	# reschedule?
 				timeout.cancel timer if timer?
-				
+
 				# redraw on next tick, do this outside of angulars scope checks
 				timer = timeout () ->
 					console.log "redraw", config
@@ -55,7 +59,7 @@ app.directive 'chart', ['IdGenerator', '$timeout', (idGenerator, timeout) ->
 				chart = new Highcharts.StockChart config
 			else
 				chart = new Highcharts.Chart config
-		
+
 ]
 
 app.directive 'serie', [() ->
@@ -80,11 +84,11 @@ app.directive 'serie', [() ->
 				chartConfig.series.push config
 				scope.$emit 'chartElementDone' if emit is yes
 				done = yes
-		
+
 		scope.$emit 'chartElement', 'serie' , (chartConfig) ->
 			configureSerie chartConfig, yes
-			
-		
+
+
 		scope.$on 'chartReady', (event, chartConfig) ->
 			configureSerie chartConfig, no
 ]
@@ -96,9 +100,9 @@ app.directive 'axisX', [() ->
 		title: "@"
 	link: (scope) ->
 		console.log "xAxis"
-		
+
 		config = if scope.config? then scope.config else {}
-		
+
 		if scope.title
 			config.title =
 				text: scope.title
@@ -130,7 +134,7 @@ app.directive 'axisY', [() ->
 		console.log "yAxis"
 
 		config = if scope.config? then scope.config else {}
-		
+
 		if scope.title
 			config.title =
 				text: scope.title
