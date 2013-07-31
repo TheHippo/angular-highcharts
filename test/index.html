@@ -42,7 +42,8 @@
       </div>
 			<div class="row" ng-controller="Chart3">
 				<div class="span12">
-					<div chart type="stock" title="Example Stockchart with custom config"  config="config" active="chartReady">
+					<div chart type="stock" title="Example Stockchart with custom config"  config="chartConfig" active="chartReady">
+            <div legend config="legendConfig"></div>
 						<div ng-repeat="serie in series" serie name="serie.name" data="serie.data"></div>
 					</div>
 				</div>

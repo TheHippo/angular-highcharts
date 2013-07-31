@@ -28,13 +28,20 @@ app.controller 'Chart2', ['$scope', (scope) ->
 app.controller 'Chart3', ['$http', '$scope', (http, scope) ->
 	scope.chartReady = no
 
-	scope.config =
+	scope.chartConfig =
 		backgroundColor: "#f2f2f2"
 		height: 200
-		width: 400
+		width: 500
 		style:
 			fontSize: "8px"
 			fontFamily: "Times New Roman"
+
+	scope.legendConfig =
+		enabled: yes
+		align: "right"
+		verticalAlign: "top"
+		y: 55
+		layout: "vertical"
 
 	http.jsonp('http://www.highcharts.com/samples/data/jsonp.php?filename=aapl-c.json&callback=JSON_CALLBACK').success (data) ->
 		scope.series = [
