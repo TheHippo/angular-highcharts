@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<meta charset='utf-8'> 
+		<meta charset='utf-8'>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<title>Angular.js Hightchars</title>
 		<link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.no-icons.min.css" rel="stylesheet">
@@ -33,16 +33,23 @@
 					</div>
 				</div>
 			</div>
+      <div class="row" ng-controller="Chart3">
+        <div class="span12">
+          <div chart type="stock" title="Example Stockchart" style="width: 100%; height: 400px;" active="chartReady">
+            <div ng-repeat="serie in series" serie name="serie.name" data="serie.data"></div>
+          </div>
+        </div>
+      </div>
 			<div class="row" ng-controller="Chart3">
 				<div class="span12">
-					<div chart type="stock" title="Example Stockchart" style="width: 100%; height: 400px;" active="chartReady">
+					<div chart type="stock" title="Example Stockchart with custom config"  config="config" active="chartReady">
 						<div ng-repeat="serie in series" serie name="serie.name" data="serie.data"></div>
 					</div>
 				</div>
 			</div>
 		</div>
 		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-		<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.1.5/angular.js"></script>	
+		<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.1.5/angular.js"></script>
 		<script src="//code.highcharts.com/stock/highstock.js"></script>
 		<script src="angular-highcharts.js"></script>
 		<script src="scripts/test.js"></script>
