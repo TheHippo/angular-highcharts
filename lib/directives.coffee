@@ -3,7 +3,7 @@ app = angular.module 'angular-highcharts.directives', []
 app.directive 'chart', ['IdGenerator', '$timeout', (idGenerator, timeout) ->
 	restrict: 'AEC'
 	transclude: yes
-	template: '<div style="with:100%; height: 100%;"></div><div style="display:none;" ng-transclude>'
+	template: '<div></div><div style="display:none;" ng-transclude>'
 	link: (scope, element, attrs) ->
 		console.log 'chart'
 		id = idGenerator.getID()
@@ -20,7 +20,7 @@ app.directive 'chart', ['IdGenerator', '$timeout', (idGenerator, timeout) ->
 
 		options = scope.$eval attrs.config
 		config.chart = angular.extend config.chart, options
-		console.log config
+
 
 		chart = null
 		timer = null
@@ -123,6 +123,29 @@ app.directive 'axisX', [() ->
 		scope.$on 'chartReady', (event, chartConfig) ->
 			configureAxis chartConfig, no
 
+]
+
+app.directive "legend", [() ->
+	restrict: "AC"
+	scope:
+		config: "="
+	link: (scope) ->
+		console.log "legend", scope.config
+		config = if scope.config? then scope.config else {}
+		done 	 = no
+
+		configureLegend = (chartConfig, emit) ->
+			if not done
+				chartConfig.legend = {} unless chartConfig.legend?
+				chartConfig.legend = config
+				scope.$emit "chartElementDone" if emit is yes
+				done = yes
+
+		scope.$emit 'chartElement', 'legend', (chartConfig) ->
+			configureLegend chartConfig, yes
+
+		scope.$on 'chartReady', (event, chartConfig) ->
+			configureLegend chartConfig, no
 ]
 
 app.directive 'axisY', [() ->
